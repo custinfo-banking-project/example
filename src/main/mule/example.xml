@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0ca14444-5692-4377-a052-25bd2ce8f42d" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
+	<api-gateway:autodiscovery apiId="18977033" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="ef53373d-7781-4b97-8fb4-cfbf2b3015d7" flowRef="exampleFlow" />
 	<flow name="exampleFlow" doc:id="582019b0-e7e0-49f1-97c9-68f9e53f929d" >
 		<http:listener doc:name="Listener" doc:id="eb1cc9d1-c9cb-4f54-a82b-b1421b873055" config-ref="HTTP_Listener_config" path="/test"/>
 		<ee:transform doc:name="Transform Message" doc:id="ea542c06-90c5-49e8-9b7f-418d5b738c0d" >
